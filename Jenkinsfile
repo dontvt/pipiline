@@ -31,10 +31,11 @@ pipeline {
             }
         }
 
-
+        withEnv(['PATH+NODE=/var/jenkins_home/.nvm/versions/node/v18.13.0/bin']) {
         stage('Running tests') {
             steps {
-                sh 'npm install'
+                sh "npm install -g yarn"
+                sh "yarn install"
             }
         }
     }
