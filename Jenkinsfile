@@ -33,30 +33,7 @@ pipeline {
 
         stage('Running tests') {
             steps {
-                script {
-                        if (SUITE_ID_OR_CASE_ID != null && SUITE_ID_OR_CASE_ID != "") {
-                            sh """
-                                node -v
-                                npm install -g yarn
-                                yarn install
-                                set +e
-                                CI_ENV=${CI_ENV} yarn test ${TEST_FILE_OR_FOLDER} -g "${SUITE_ID_OR_CASE_ID}" --shard=${shardNum}/${SHARDS}
-                                set -e
-                            """
-                        } else {
-                            sh "npm install -g yarn"
-                            sh """
-                                #!/bin/bash
-                                echo "hello world"
-                                source $HOME/.bashrc
-                                ls
-                                yarn install
-                                set +e
-                                yarn test ${TEST_FILE_OR_FOLDER}
-                                set -e
-                            """
-                        }
-                }
+                sh 'yarn install'
             }
         }
     }
