@@ -34,9 +34,9 @@ pipeline {
         stage('Running tests') {
             steps {
                 echo 'Hello World'
+                sh 'yarn install'
                 script {
                     echo "Testing the bash command"
-                    node -v
                     yarn -v
                 }
             }
