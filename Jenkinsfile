@@ -1,6 +1,12 @@
 pipeline {
+    agent {
+        docker {
+            image 'node:lts-buster-slim'
+            args '-p 3000:3000'
+        }
+    }
     //agent any
-    agent { docker { image 'node:16.17.1-alpine' } }
+    // agent { docker { image 'node:16.17.1-alpine' } }
 
     options {
         skipDefaultCheckout true
@@ -34,13 +40,7 @@ pipeline {
 
         stage('Running tests') {
             steps {
-                echo 'Hello World'
-                sh 'node --version'
-                sh 'yarn install'
-                script {
-                    echo "Testing the bash command"
-                    yarn -v
-                }
+                sh 'npm install'
             }
         }
     }
