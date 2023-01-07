@@ -33,7 +33,6 @@ pipeline {
 
         stage('Running tests') {
             steps {
-                node -v
                 echo 'Hello World'
                 script {
                     echo "Testing the bash command"
