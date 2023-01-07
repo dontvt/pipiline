@@ -1,6 +1,5 @@
 pipeline {
-    agent none
-    //agent any
+    agent any
     // agent { docker { image 'node:16.17.1-alpine' } }
 
     options {
