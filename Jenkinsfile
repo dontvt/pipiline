@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    tools {nodejs 'node-18.13.0'}
 
     options {
         skipDefaultCheckout true
@@ -34,26 +33,11 @@ pipeline {
 
         stage('Running tests') {
             steps {
-                sh 'node -v'
-                sh 'yarn install'
+                echo 'Hello World'
+                script {
+                    echo "Testing the bash command"
+                }
             }
-        }
-    }
-
-    post {
-        cleanup {
-            sh "ls ${workspace}"
-            /* clean up our workspace */
-            deleteDir()
-            /* clean up tmp directory */
-            dir("${workspace}@tmp") {
-                deleteDir()
-            }
-            /* clean up script directory */
-            dir("${workspace}@script") {
-                deleteDir()
-            }
-            sh "ls ${workspace}"
         }
     }
 }
